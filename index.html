@@ -1,27 +1,47 @@
+:require = "main.css"
 <!DOCTYPE html>
 <html>
 
-  <head><!-- where all the meta data will go, like and files we need to include -->
-    <title>My Little Rainbow</title><!-- the title is what appears on your tab -->
-  </head>
-
-  <body><!-- the body element is where everything we will see on the page will go -->
+@@ -9,9 +10,12 @@
 
     <!-- our soon to be beautiful rainbow! -->
     <div> <!-- the grandest grandparent div -->
       <div>
         <div>
           <div>
+      <div>color: red
+        <div>color: Yellow
+          <div> color: indigo
+            <blockquote cite="">
+
+          </blockquote>
             <div>
               <div>
                 <div></div> <!-- the grandest child div -->
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+3 main.css
+@@ -1,6 +1,5 @@
+div {
+  border: 20px solid #000; /* this is short hand for setting
+                            the border's width, its type, and color */
+  border: 20px solid #000; /
+  display: inline-block; /* a way of positioning elements */
+  min-width: 20em; /* the two min styles make the shape */
+  min-height: 25em; /* of the divs oblong*/
+7 spec/my_little_rainbow_spec.rb
+@@ -13,16 +13,9 @@
+    it 'contains a <head> tag to enclose the header' do
+      head = parsed_html.search('html > head').first
 
-  </body>
+      expect(head.name).to eq('head'), "Always include a <head> tag in your HTML pages"
 
-</html>
+      expect(html_file_contents).to include('</head>'), "Don't forget the closing </head> tag!"
+    end
+
+    context 'within <head>' do
+      it 'contains a <link> tag to our main.css file' do
+        link = parsed_html.search('html > head > link').first
+
+        expect(link.name).to eq('link'), "We need a <link> in our <head> section to connect our css"
+
+      end
+    end
